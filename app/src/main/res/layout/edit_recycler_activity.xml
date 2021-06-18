@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.Pumpkin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    tools:context=".EditRecyclerEntry"
+    android:paddingHorizontal="30dp"
+    android:paddingVertical="60dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSection1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:background="@drawable/edit_recyclerview_bg_shape"
+        android:elevation="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editRecyclerTextFieldExpense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expense"
+            android:minWidth="160dp"
+            style="@style/MyTextInputLayoutExpense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editRecyclerEditTextExpense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface"
+                android:inputType="textCapSentences" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editRecyclerTextFieldTag"
+            android:layout_width="match_parent"
+            style="@style/MyTextInputLayoutExpense"
+            android:layout_height="wrap_content"
+            android:hint="Tag"
+            android:minWidth="160dp"
+            android:layout_below="@id/editRecyclerTextFieldExpense"
+            android:layout_marginVertical="30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editRecyclerEditTextTag"
+                android:layout_width="match_parent"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editRecyclerTextFieldAmount"
+            android:layout_width="match_parent"
+            style="@style/MyTextInputLayoutExpense"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            app:boxCornerRadiusTopStart="0dp"
+            app:prefixText="$"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@id/editRecyclerTextFieldTag">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editRecyclerEditTextAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editRecyclerTextFieldDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            style="@style/MyTextInputLayoutExpense"
+            app:boxCornerRadiusTopStart="0dp"
+            android:layout_below="@id/editRecyclerTextFieldAmount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editRecyclerEditTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface"
+                android:focusable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editRecyclerTextFieldID"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:hint="ID"
+            app:boxCornerRadiusTopStart="0dp"
+            android:layout_below="@id/editRecyclerTextFieldDate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editRecyclerEditTextID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayoutSection1"
+        android:text="Delete"
+        style="@style/updateButton"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:onClick="onClickDelete" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayoutSection1"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentEnd="true"
+        style="@style/updateButton"
+        android:text="Update"
+        android:onClick="onClickUpdate"/>
+
+</RelativeLayout>

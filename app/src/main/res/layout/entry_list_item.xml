@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="15dp"
+        android:layout_marginTop="0dp">
+
+        <TextView
+            android:id="@+id/textViewExpenseName"
+            android:maxWidth="170sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textViewExpenseName"
+            android:text="Expense Name"
+            android:textColor="?attr/colorOnPrimary"
+            android:textStyle="normal"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewExpenseName"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:text="Date"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textViewTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:text="Tag"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            android:layout_marginRight="110sp"/>
+
+
+        <TextView
+            android:id="@+id/textViewAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Amount"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/dividerLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".3"
+        android:layout_marginHorizontal="56dp"
+        android:background="?attr/colorSecondary"
+        android:layout_below="@id/relative1"/>
+
+</RelativeLayout>

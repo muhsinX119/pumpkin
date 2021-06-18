@@ -1,0 +1,108 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Pumpkin" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#141414</item>
+        <item name="colorPrimaryVariant">#1e88e5</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#1e88e5</item>
+        <item name="colorSecondaryVariant">#1e88e5</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Card color -->
+        <item name="colorSurface">#1e1e1e</item>
+        <!-- Status bar color. -->
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:scrollbarThumbVertical">?attr/colorSecondary</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">false</item>
+
+    </style>
+
+    <style name="Theme.Pumpkin.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+    </style>
+
+
+    <style name="MyTextInputLayoutExpense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="boxCornerRadiusTopStart">0dp</item>
+        <item name="boxCornerRadiusTopEnd">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">0dp</item>
+
+        <item name="android:textColorHint">@color/textfiled_hinttext_colorstate</item>
+        <item name="hintTextColor">?attr/colorOnPrimary</item>
+        <item name="boxBackgroundColor">#00FFFFFF</item>
+        <!-- Theme attributes<item name="boxStrokeColor">?attr/colorOnPrimary</item> -->
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">3dp</item>
+        <item name="boxStrokeColor">@color/text_field_boxstroke_colorstate</item>
+
+    </style>
+
+
+    <style name="MyTextInputLayoutTag" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <!-- Style attributes -->
+        <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="boxCornerRadiusTopStart">0dp</item>
+        <item name="boxCornerRadiusTopEnd">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">0dp</item>
+
+        <item name="endIconTint">?attr/colorSecondary</item>
+
+        <!-- Style attributes <item name="hintTextAppearance">@style/HintText</item>
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="counterTextAppearance">@style/HintText</item>-->
+
+
+        <!-- Theme attributes -->
+        <item name="android:textColorHint">@color/textfiled_hinttext_colorstate</item>
+        <item name="hintTextColor">?attr/colorOnPrimary</item>
+        <item name="boxBackgroundColor">#00FFFFFF</item>
+        <!-- Theme attributes<item name="boxStrokeColor">?attr/colorOnPrimary</item> -->
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">3dp</item>
+        <item name="boxStrokeColor">@color/text_field_boxstroke_colorstate</item>
+
+    </style>
+
+    <style name="CustomCardCornersTop" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance_custom_corners_top</item>
+    </style>
+
+    <style name="ShapeAppearance_custom_corners_top" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">50dp</item>
+        <item name="cornerSizeTopRight">50dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="CustomCardCornersBottom" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance_custom_corners_bottom</item>
+    </style>
+
+    <style name="ShapeAppearance_custom_corners_bottom" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">50dp</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+    </style>
+
+    <style name="updateButton" parent="@style/Widget.MaterialComponents.Button">
+        <item name="textAppearanceButton">@style/updateButtonText</item>
+        <item name="backgroundTint">?attr/colorSurface</item>
+
+    </style>
+
+    <style name="updateButtonText" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+</resources>

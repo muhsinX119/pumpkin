@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NewBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <item name="boxStrokeColor">@color/white</item>
+
+    </style>
+
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">?attr/colorPrimaryVariant</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="hintTextColor">?attr/colorPrimaryVariant</item>
+        <item name="iconTint">?attr/colorPrimaryVariant</item>
+
+    </style>
+
+
+</resources>
