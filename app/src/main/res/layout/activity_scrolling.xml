@@ -101,7 +101,7 @@
                         android:hint="Amount"
                         app:boxCornerRadiusBottomEnd="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
-                        app:prefixText="$">
+                        app:prefixText="₹">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textAmount"

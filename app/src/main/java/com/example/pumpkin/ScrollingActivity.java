@@ -102,17 +102,14 @@ public class ScrollingActivity extends AppCompatActivity {
 
         binding = ActivityScrollingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //cbinding = ContentScrollingBinding.inflate(getLayoutInflater());
 
         textExpense = binding.textExpense;
-        //textTag = binding.textTag;
         textTag = binding.textTag;
         textAmount = binding.textAmount;
         textSum = binding.textSum;
         textMonth = binding.textMonth;
         expensePerDay = binding.expensePerDay;
         appBar = binding.appBar;
-        //bottomCardView = binding.bottomCardView;
         toolBarLayout = binding.toolbarLayout;
         fab = binding.fab;
         toolbarLayout = binding.toolbarLayout;
@@ -124,33 +121,10 @@ public class ScrollingActivity extends AppCompatActivity {
         textViewDateSelect.setCompoundDrawablesWithIntrinsicBounds(R.drawable.date_icon, 0, 0, 0);
         date2 = System.currentTimeMillis();
 
-        //exposed dropdown list
-        //ArrayList<String> uniqueTags = new ArrayList<String>();
-        /*uniqueTags = dataBaseHelper.getUniqueTags();
-        ArrayAdapter utAdapter = new ArrayAdapter(this, R.layout.drop_down,uniqueTags);
-        textTag.setAdapter(utAdapter);*/
-
-
-
-
-        //getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        //ViewGroup.LayoutParams layoutParams = bottomCardView.getLayoutParams();
-        //layoutParams.height = displayMetrics.heightPixels;
-        //bottomCardView.setLayoutParams(layoutParams);
-
-        //Initialize for status bar color change
-        //TypedValue typedValue = new TypedValue();
-        //Resources.Theme theme = this.getTheme();
-        //theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
-        //@ColorInt int col = typedValue.data;
-
         //Setting statusbar color
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#00000000"));
-        //window.setNavigationBarColor(Color.parseColor("#00000000"));
-        //window.setNavigationBarColor(Color.parseColor("#00000000"));
-
 
         //To hide FAB on AppBar collapse
         appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -276,7 +250,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         //Updating expensetrend texts
         float expenseSinceMonthStart = dataBaseHelper.getExpenseSinceMonthStart();
-        textSum.setText("$ "+toString().valueOf(expenseSinceMonthStart));
+        textSum.setText("₹ "+toString().valueOf(expenseSinceMonthStart));
         dateFormat = new SimpleDateFormat("MMMM");
         String strDate = dateFormat.format(System.currentTimeMillis());
         textMonth.setText(" spent in "+strDate);
@@ -437,6 +411,7 @@ public class ScrollingActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
 
             requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
 
         } else {
             permissionStorage = true;
