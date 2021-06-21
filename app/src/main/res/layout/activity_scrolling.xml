@@ -11,24 +11,25 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:background="?attr/colorPrimary">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|snap"
             app:statusBarScrim="@android:color/transparent">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewTop"
                 style="@style/CustomCardCornersBottom"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="300dp"
                 android:layout_marginTop="0dp"
                 app:cardBackgroundColor="?attr/colorSurface"
                 app:cardElevation="0dp">
+
 
                 <LinearLayout
                     android:id="@+id/linearLayoutForInputs"
@@ -122,12 +123,22 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="-10dp"
+                    android:layout_marginBottom="-35dp"
                     android:alpha=".8"
                     android:paddingLeft="10dp"
                     android:text="Wed, 6/16/21"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_gravity="end"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/pumpkin_launcher"
+                    android:background="#00000000"
+                    android:onClick="exportReport"/>
 
             </com.google.android.material.card.MaterialCardView>
 

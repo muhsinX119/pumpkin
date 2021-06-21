@@ -1,5 +1,7 @@
 package com.example.pumpkin;
 
+import android.Manifest;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,8 +37,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -129,6 +134,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 } else if (verticalOffset == 0) {
                     // Expanded
                     //window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+
                 } else {
                     // Somewhere in between
                     fab.show();
@@ -259,7 +265,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     }
 
-    public void backupDb(View v) throws IOException {
+    public void backupDb() throws IOException {
 
         final String inFileName = getApplicationContext().getApplicationInfo().dataDir + "/databases/entries.db";
         File dbFile = new File(inFileName);
@@ -341,8 +347,49 @@ public class ScrollingActivity extends AppCompatActivity {
 
     public String formattedDate (long date) {
         DateFormat dateFormat = new SimpleDateFormat("E, d/MMM/yy");
-        String strDate = dateFormat.format(date);
-        return strDate;
+        return dateFormat.format(date);
+    }
+
+    public void exportReport (View v) throws IOException {
+
+        /*Snackbar.make(v, "Pumpkin", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();*/
+
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+
+
+        File reportFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Pumpkin Reports");
+        if (!reportFolder.exists()){
+            reportFolder.mkdirs();
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("E_d-MMM-yy_HH-mm");
+        String reportName = "pumpkin "+ dateFormat.format(System.currentTimeMillis()) +".csv";
+        File file = new File(reportFolder, reportName);
+        PrintWriter outFile = new PrintWriter(file);
+
+        outFile.println("ID for Internal Use, Expense Name, Tag, Amount, Date");
+
+        try {
+            file.createNewFile();
+            ArrayList<DbStructure> table1 = (ArrayList<DbStructure>) dataBaseHelper.getAll();
+
+            int i=0;
+            while (i<table1.size()) {
+               outFile.println(table1.get(i).toCSVLine());
+               i++;
+            }
+
+            outFile.close();
+
+            Snackbar.make(v, "Report \""+reportName+"\" Created", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } catch (IOException e) {
+            Snackbar.make(v, "Export Failed", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        
+
     }
 
 

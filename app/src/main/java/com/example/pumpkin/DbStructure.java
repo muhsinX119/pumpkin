@@ -31,6 +31,13 @@ public class DbStructure {
                 ", amount=" + amount + ",date="+ formattedDate(date);
     }
 
+    public String toCSVLine() {
+        return  id +
+                ", \"" + expense + '\"' +
+                ", \"" + tag + '\"' +
+                ", " + amount + ", \""+ formattedDate(date)+"\"";
+    }
+
 
     //getters and setters
 
@@ -77,8 +84,7 @@ public class DbStructure {
 
     public String formattedDate (long date){
         DateFormat dateFormat = new SimpleDateFormat("E, d/MMM/yy");
-        String strDate = dateFormat.format(date);
-        return strDate;
+        return dateFormat.format(date);
     }
 
 }
