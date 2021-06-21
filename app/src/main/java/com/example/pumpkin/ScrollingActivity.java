@@ -1,6 +1,7 @@
 package com.example.pumpkin;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,14 +13,20 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
+import android.os.FileUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
@@ -65,6 +72,24 @@ public class ScrollingActivity extends AppCompatActivity {
     private AutoCompleteTextView textTag;
     private DateFormat dateFormat;
     private MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+    private int exceptCount = 0;
+    private boolean permissionStorage;
+
+    ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    permissionStorage = true;
+                    Snackbar.make(getWindow().getDecorView(), "Permission Granted. Tap on the Pumpkin to create report", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                } else {
+
+                    permissionStorage = false;
+
+                    Snackbar.make(getWindow().getDecorView(), "Storage permission is required to save report. Please grant the permission", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
 
 
     @Override
@@ -350,13 +375,12 @@ public class ScrollingActivity extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
-    public void exportReport (View v) throws IOException {
+    /*public void exportReport (View v) throws IOException {
 
-        /*Snackbar.make(v, "Pumpkin", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();*/
+        *//*Snackbar.make(v, "Pumpkin", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();*//*
 
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-
 
         File reportFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Pumpkin Reports");
         if (!reportFolder.exists()){
@@ -388,9 +412,63 @@ public class ScrollingActivity extends AppCompatActivity {
             Snackbar.make(v, "Export Failed", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
-        
+
+
+    }*/
+    public void exportReport (View v) throws IOException {
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        } else {
+            permissionStorage = true;
+        }
+
+        if (permissionStorage) {
+
+            File downloadsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"");
+
+            boolean downloadsFolderError = downloadsFolder.mkdirs();
+            Log.d("Folder Creation", "exportReport: Pumpkin Reports created "+toString().valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            ));
+
+            File reportFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Pumpkin Reports");
+            /*if (!reportFolder.exists()) {
+                boolean folderError = reportFolder.mkdirs();
+                Log.d("Folder Creation", "exportReport: "+toString().valueOf(folderError));
+            }*/
+
+            boolean folderError = reportFolder.mkdirs();
+            Log.d("Folder Creation", "exportReport: Pumpkin Reports created "+toString().valueOf(folderError));
+
+            DateFormat dateFormat = new SimpleDateFormat("E_d-MMM-yy_HH-mm");
+            String reportName = "pumpkin " + dateFormat.format(System.currentTimeMillis()) + ".csv";
+            File file = new File(reportFolder, reportName);
+            PrintWriter outFile = new PrintWriter(file);
+
+            outFile.println("ID for Internal Use, Expense Name, Tag, Amount, Date");
+
+            try {
+                file.createNewFile();
+                ArrayList<DbStructure> table1 = (ArrayList<DbStructure>) dataBaseHelper.getAll();
+
+                int i = 0;
+                while (i < table1.size()) {
+                    outFile.println(table1.get(i).toCSVLine());
+                    i++;
+                }
+
+                outFile.close();
+
+                Snackbar.make(v, "Report \"" + reportName + "\" Created", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            } catch (IOException e) {
+                Snackbar.make(v, "Export Failed", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+        }
+
 
     }
-
-
-}

@@ -35,7 +35,7 @@ public class DbStructure {
         return  id +
                 ", \"" + expense + '\"' +
                 ", \"" + tag + '\"' +
-                ", " + amount + ", \""+ formattedDate(date)+"\"";
+                ", " + amount + ", \""+ formattedDate2(date)+"\"";
     }
 
 
@@ -84,6 +84,11 @@ public class DbStructure {
 
     public String formattedDate (long date){
         DateFormat dateFormat = new SimpleDateFormat("E, d/MMM/yy");
+        return dateFormat.format(date);
+    }
+
+    public String formattedDate2 (long date){
+        DateFormat dateFormat = new SimpleDateFormat("E d/MMM/yy");
         return dateFormat.format(date);
     }
 
