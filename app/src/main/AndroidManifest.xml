@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_pumpkin2"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pumpkin">
+        android:theme="@style/Theme.Pumpkin"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name="com.example.pumpkin.ScrollingActivity"
             android:label="@string/app_name"
