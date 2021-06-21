@@ -1,9 +1,12 @@
 package com.example.pumpkin;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -25,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
 import android.os.FileUtils;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -417,6 +421,19 @@ public class ScrollingActivity extends AppCompatActivity {
     }*/
     public void exportReport (View v) throws IOException {
 
+        if (Build.VERSION.SDK_INT > 29) {
+
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                permissionStorage = true;
+                intent.setData(uri);
+                startActivity(intent);
+            }
+
+        } else {permissionStorage = true;}
+
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
 
             requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -427,11 +444,11 @@ public class ScrollingActivity extends AppCompatActivity {
 
         if (permissionStorage) {
 
-            File downloadsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"");
 
+
+            File downloadsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"");
             boolean downloadsFolderError = downloadsFolder.mkdirs();
-            Log.d("Folder Creation", "exportReport: Pumpkin Reports created "+toString().valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            ));
+            Log.d("Folder Creation", "exportReport: Pumpkin Reports created "+toString().valueOf(downloadsFolderError)+" "+getPackageName());
 
             File reportFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Pumpkin Reports");
             /*if (!reportFolder.exists()) {
@@ -440,7 +457,7 @@ public class ScrollingActivity extends AppCompatActivity {
             }*/
 
             boolean folderError = reportFolder.mkdirs();
-            Log.d("Folder Creation", "exportReport: Pumpkin Reports created "+toString().valueOf(folderError));
+            Log.d("Folder Creation", "exportReport: Pumpkin Reports created "+toString().valueOf(reportFolder));
 
             DateFormat dateFormat = new SimpleDateFormat("E_d-MMM-yy_HH-mm");
             String reportName = "pumpkin " + dateFormat.format(System.currentTimeMillis()) + ".csv";
