@@ -76,7 +76,6 @@ public class ScrollingActivity extends AppCompatActivity {
     private AutoCompleteTextView textTag;
     private DateFormat dateFormat;
     private MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-    private int exceptCount = 0;
     private boolean permissionStorage;
 
     ActivityResultLauncher<String> requestPermissionLauncher =

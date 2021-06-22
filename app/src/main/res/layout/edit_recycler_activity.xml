@@ -38,19 +38,32 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editRecyclerTextFieldTag"
             android:layout_width="match_parent"
-            style="@style/MyTextInputLayoutExpense"
-            android:layout_height="wrap_content"
+            style="@style/MyTextInputLayoutTag"
+            android:layout_height="60dp"
             android:hint="Tag"
             android:minWidth="160dp"
             android:layout_below="@id/editRecyclerTextFieldExpense"
             android:layout_marginVertical="30dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <!--<com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editRecyclerEditTextTag"
                 android:layout_width="match_parent"
                 android:textColor="?attr/colorOnSurface"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences" />-->
+
+            <AutoCompleteTextView
+                android:id="@+id/editRecyclerEditTextTag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownAnchor="@id/editRecyclerEditTextTag"
+                android:dropDownHeight="wrap_content"
+                android:inputType="textCapSentences"
+                android:padding="16dp"
+                android:textColor="?attr/colorOnPrimary"
+                android:textColorHint="@color/textfiled_hinttext_colorstate"
+                android:textCursorDrawable="@null"
+                android:textSize="13dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

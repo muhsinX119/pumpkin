@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,10 +18,11 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class EditRecyclerEntry extends AppCompatActivity {
 
-    private EditText editRecyclerEditTextExpense, editRecyclerEditTextTag, editRecyclerEditTextAmount, editRecyclerEditTextID;
+    private EditText editRecyclerEditTextExpense, editRecyclerEditTextAmount, editRecyclerEditTextID;
     private TextView editRecyclerEditTextDate;
     private View view;
     private String expense, tag;
@@ -30,6 +33,8 @@ public class EditRecyclerEntry extends AppCompatActivity {
     private DbHelper dataBaseHelper = new DbHelper(EditRecyclerEntry.this);
     private MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
     private Intent intent;
+    private ArrayList<String> uniqueTags = new ArrayList<String>();
+    private AutoCompleteTextView editRecyclerEditTextTag;
 
 
     @Override
@@ -91,6 +96,7 @@ public class EditRecyclerEntry extends AppCompatActivity {
 
         editRecyclerEditTextExpense.setText(expense);
         editRecyclerEditTextTag.setText(tag);
+        uniqueTagsFn();
         editRecyclerEditTextAmount.setText(toString().valueOf(amount));
         editRecyclerEditTextDate.setText(formattedDate(date));
         editRecyclerEditTextID.setText(toString().valueOf(id));
@@ -129,6 +135,12 @@ public class EditRecyclerEntry extends AppCompatActivity {
         dataBaseHelper.deleteOne(toString().valueOf(intent.getIntExtra("Id",-1)));
         finish();
 
+    }
+
+    public void uniqueTagsFn () {
+        uniqueTags = dataBaseHelper.getUniqueTags();
+        ArrayAdapter utAdapter = new ArrayAdapter(EditRecyclerEntry.this, R.layout.drop_down,uniqueTags);
+        editRecyclerEditTextTag.setAdapter(utAdapter);
     }
 
 
