@@ -130,7 +130,7 @@ public class ScrollingActivity extends AppCompatActivity {
         appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                verticalOffset = verticalOffset;
+                verticalOffset = verticalOffset-600;
                 if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     // Collapsed
                     fab.hide();
@@ -171,13 +171,6 @@ public class ScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //restoreDb();
-                /*try {
-                    backupDb();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
 
                 //get values from textfields
                 String expense, tag, amountString, date;
@@ -228,6 +221,8 @@ public class ScrollingActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+
 
         //textAmount.requestFocus();
 
@@ -343,83 +338,37 @@ public class ScrollingActivity extends AppCompatActivity {
         recyclerViewDataUpdate();
     }
 
-    public void hideSoftKeyboard(View view){
-        InputMethodManager imm =(InputMethodManager) getSystemService(ScrollingActivity.this.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
     public String formattedDate (long date) {
         DateFormat dateFormat = new SimpleDateFormat("E, d/MMM/yy");
         return dateFormat.format(date);
     }
 
-    /*public void exportReport (View v) throws IOException {
-
-        *//*Snackbar.make(v, "Pumpkin", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();*//*
-
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-
-        File reportFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Pumpkin Reports");
-        if (!reportFolder.exists()){
-            reportFolder.mkdirs();
-        }
-
-        DateFormat dateFormat = new SimpleDateFormat("E_d-MMM-yy_HH-mm");
-        String reportName = "pumpkin "+ dateFormat.format(System.currentTimeMillis()) +".csv";
-        File file = new File(reportFolder, reportName);
-        PrintWriter outFile = new PrintWriter(file);
-
-        outFile.println("ID for Internal Use, Expense Name, Tag, Amount, Date");
-
-        try {
-            file.createNewFile();
-            ArrayList<DbStructure> table1 = (ArrayList<DbStructure>) dataBaseHelper.getAll();
-
-            int i=0;
-            while (i<table1.size()) {
-               outFile.println(table1.get(i).toCSVLine());
-               i++;
-            }
-
-            outFile.close();
-
-            Snackbar.make(v, "Report \""+reportName+"\" Created", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        } catch (IOException e) {
-            Snackbar.make(v, "Export Failed", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-
-
-    }*/
     public void exportReport (View v) throws IOException {
 
+        Log.d("Test", "exportReport: exportReport started");
+
         if (Build.VERSION.SDK_INT > 29) {
+
+            permissionStorage = Environment.isExternalStorageManager();
 
             if (!Environment.isExternalStorageManager()) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 Uri uri = Uri.fromParts("package", getPackageName(), null);
-                permissionStorage = true;
                 intent.setData(uri);
                 startActivity(intent);
+                return;
             }
 
-        } else {permissionStorage = true;}
-
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
 
             requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
+            return;
 
         } else {
             permissionStorage = true;
         }
 
         if (permissionStorage) {
-
-
 
             File downloadsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"");
             boolean downloadsFolderError = downloadsFolder.mkdirs();
@@ -459,7 +408,8 @@ public class ScrollingActivity extends AppCompatActivity {
                 Snackbar.make(v, "Export Failed", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        }
+        } else { Snackbar.make(v, "This is called", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show(); }
         }
 
 

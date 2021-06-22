@@ -130,14 +130,17 @@
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="16dp" />
 
-                <ImageButton
+                <Button
                     android:id="@+id/imageButton"
+                    style="@style/reportButton"
+                    android:text="Create Report"
+                    android:textColor="@color/white"
+                    android:textSize="9dp"
+                    android:backgroundTint="?attr/colorSurface"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="65dp"
                     android:layout_gravity="end"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/pumpkin_launcher"
-                    android:background="#00000000"
                     android:onClick="exportReport"/>
 
             </com.google.android.material.card.MaterialCardView>
