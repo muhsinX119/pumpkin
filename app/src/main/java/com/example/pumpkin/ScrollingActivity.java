@@ -3,6 +3,7 @@ package com.example.pumpkin;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -31,6 +33,7 @@ import android.os.FileUtils;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
@@ -121,9 +124,15 @@ public class ScrollingActivity extends AppCompatActivity {
         date2 = System.currentTimeMillis();
 
         //Setting statusbar color
+        /*TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.colorSurface, typedValue, true);
+        @ColorInt int color = typedValue.data;*/
+
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#00000000"));
+        /*window.setStatusBarColor(color);*/
 
         //To hide FAB on AppBar collapse
         appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
