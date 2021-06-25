@@ -2,11 +2,14 @@ package com.example.pumpkin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +19,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecyclerViewAdapter.ViewHolder>{
 
@@ -39,12 +43,12 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         //Change card background based on Date-Month value
-        /*TypedValue typedValue = new TypedValue();
+        TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
-        @ColorInt int col = typedValue.data;*/
+        @ColorInt int col = typedValue.data;
 
-        /*DateFormat dateFormat2 = new SimpleDateFormat("MMMM");
+        DateFormat dateFormat2 = new SimpleDateFormat("MMMM");
         String strDate2 = dateFormat2.format(entry.get(position).getDate());
         String[] months = {"January","March","May","July","September","November"};
         boolean contains = Arrays.stream(months).anyMatch(strDate2::equals);
@@ -52,14 +56,12 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
             //holder.parent.setBackgroundResource(R.color.teal_200);
             theme.resolveAttribute(R.attr.colorSecondary, typedValue, true);
             col = typedValue.data;
-            holder.parent.setCardBackgroundColor(col);
+            holder.entryCard.setCardBackgroundColor(col);
         } else {
-
-            theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+            theme.resolveAttribute(R.attr.colorSurface, typedValue, true);
             col = typedValue.data;
-            holder.parent.setCardBackgroundColor(col);
-
-        }*/
+            holder.entryCard.setCardBackgroundColor(col);
+        }
 
         holder.textViewExpenseName.setText(entry.get(position).getExpense());
         holder.textViewDate.setText(formattedDate(entry.get(position).getDate()));
@@ -82,7 +84,7 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
         private TextView textViewExpenseName;
         private TextView textViewTag, textViewAmount;
         private TextView textViewDate;
-        private CardView parent;
+        private MaterialCardView entryCard;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -91,6 +93,7 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
             textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewTag = itemView.findViewById(R.id.textViewTag);
             textViewAmount = itemView.findViewById(R.id.textViewAmount);
+            entryCard = itemView.findViewById(R.id.entryCard);
             //parent = itemView.findViewById(R.id.parent2);
 
             itemView.setOnClickListener(this);

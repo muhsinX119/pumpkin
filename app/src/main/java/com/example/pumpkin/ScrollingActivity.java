@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
 import android.os.FileUtils;
+import android.os.health.SystemHealthManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -80,6 +81,8 @@ public class ScrollingActivity extends AppCompatActivity {
     private DateFormat dateFormat;
     private MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
     private boolean permissionStorage;
+    private String pauseExpense, pauseTag, pauseAmount;
+    private long pauseDate, timeSincePause=0;
 
     ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -122,6 +125,12 @@ public class ScrollingActivity extends AppCompatActivity {
         //initialize date select in main activity
         textViewDateSelect.setCompoundDrawablesWithIntrinsicBounds(R.drawable.date_icon, 0, 0, 0);
         date2 = System.currentTimeMillis();
+
+        //initialize pause values
+        pauseAmount = textAmount.getText().toString();
+        pauseTag = textTag.getText().toString();
+        pauseDate = date2;
+        pauseExpense = textExpense.getText().toString();
 
         //Setting statusbar color
         /*TypedValue typedValue = new TypedValue();
@@ -220,6 +229,18 @@ public class ScrollingActivity extends AppCompatActivity {
 
         recyclerViewDataUpdate();
 
+        if (System.currentTimeMillis()-timeSincePause<120000) {
+
+            Log.d("test", "onResume: "+toString().valueOf(System.currentTimeMillis()-timeSincePause));
+
+            textExpense.setText(pauseExpense);
+            textAmount.setText(pauseAmount);
+            textTag.setText(pauseTag);
+            textViewDateSelect.setText(formattedDate(pauseDate));
+            timeSincePause = 0;
+
+        }
+
         //update textSum
         //textSum.setText(toString().valueOf(dataBaseHelper.getExpenseSinceMonthStart()));
 
@@ -230,8 +251,11 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-
-
+        pauseDate = date2;
+        pauseExpense = textExpense.getText().toString();
+        pauseTag = textTag.getText().toString();
+        pauseAmount = textAmount.getText().toString();
+        timeSincePause = System.currentTimeMillis();
         //textAmount.requestFocus();
 
     }
