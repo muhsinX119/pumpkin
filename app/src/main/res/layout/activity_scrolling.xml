@@ -11,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="430dp"
         android:background="?attr/colorPrimary"
         app:elevation="0dp">
 
@@ -24,12 +24,14 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewTop"
-                style="@style/CustomCardCornersBottom"
+                app:cardCornerRadius="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="35dp"
                 app:cardBackgroundColor="?attr/colorSurface"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                android:layout_marginBottom="30dp">
 
 
                 <LinearLayout
@@ -37,9 +39,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="30dp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/outlinedTextFieldExpense"
@@ -117,32 +119,38 @@
 
                 </LinearLayout>
 
-
-                <TextView
-                    android:id="@+id/textViewDateSelect"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="-35dp"
-                    android:alpha=".8"
-                    android:paddingLeft="10dp"
-                    android:text="Wed, 6/16/21"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="16dp" />
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="90dp">
+                    <TextView
+                        android:id="@+id/textViewDateSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:alpha=".8"
+                        android:paddingLeft="10dp"
+                        android:text="Wed, 6/16/21"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16dp" />
+                    <Button
+                        android:id="@+id/imageButton"
+                        style="@style/reportButton"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Create Report"
+                        android:textColor="@color/white"
+                        android:textSize="9dp"
+                        android:backgroundTint="?attr/colorSurface"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="exportReport"/>
 
-                <Button
-                    android:id="@+id/imageButton"
-                    style="@style/reportButton"
-                    android:text="Create Report"
-                    android:textColor="@color/white"
-                    android:textSize="9dp"
-                    android:backgroundTint="?attr/colorSurface"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="65dp"
-                    android:layout_gravity="end"
-                    android:layout_height="wrap_content"
-                    android:onClick="exportReport"/>
+                </RelativeLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
