@@ -241,6 +241,8 @@ public class ScrollingActivity extends AppCompatActivity {
 
         }
 
+        textExpense.requestFocus();
+
         //update textSum
         //textSum.setText(toString().valueOf(dataBaseHelper.getExpenseSinceMonthStart()));
 
