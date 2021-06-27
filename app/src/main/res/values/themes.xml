@@ -107,7 +107,7 @@
 
     <style name="reportButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="icon">@drawable/report_icon</item>
-        <item name="strokeColor">?attr/colorSurface</item>
+        <item name="strokeColor">#00000000</item>
         <item name="iconTint">?attr/colorSecondary</item>
     </style>
 
