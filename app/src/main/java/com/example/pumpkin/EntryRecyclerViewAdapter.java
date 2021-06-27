@@ -3,6 +3,7 @@ package com.example.pumpkin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,10 +44,12 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         //Change card background based on Date-Month value
-        TypedValue typedValue = new TypedValue();
+        /*TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
         @ColorInt int col = typedValue.data;
+        @ColorInt int col1 = Color.parseColor("#FFFFFF");
+        @ColorInt int col2 = Color.parseColor("#00d0ff");
 
         DateFormat dateFormat2 = new SimpleDateFormat("MMMM");
         String strDate2 = dateFormat2.format(entry.get(position).getDate());
@@ -56,12 +59,12 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
             //holder.parent.setBackgroundResource(R.color.teal_200);
             theme.resolveAttribute(R.attr.colorSecondary, typedValue, true);
             col = typedValue.data;
-            holder.entryCard.setCardBackgroundColor(col);
+            holder.entryCard.setCardBackgroundColor(col1);
         } else {
             theme.resolveAttribute(R.attr.colorSurface, typedValue, true);
             col = typedValue.data;
-            holder.entryCard.setCardBackgroundColor(col);
-        }
+            holder.entryCard.setCardBackgroundColor(col1);
+        }*/
 
         holder.textViewExpenseName.setText(entry.get(position).getExpense());
         holder.textViewDate.setText(formattedDate(entry.get(position).getDate()));

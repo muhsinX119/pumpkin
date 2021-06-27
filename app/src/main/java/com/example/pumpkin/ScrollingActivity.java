@@ -43,6 +43,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.pumpkin.databinding.ActivityScrollingBinding;
@@ -72,7 +73,8 @@ public class ScrollingActivity extends AppCompatActivity {
     private AppBarLayout appBar;
     private CollapsingToolbarLayout toolbarLayout;
     private FloatingActionButton fab;
-    private TextView textExpense, textAmount,textSum, textMonth, expensePerDay, textViewDateSelect;
+    private TextView textExpense, textAmount,textSum, textMonth, expensePerDay;
+    private Button textViewDateSelect;
     private DisplayMetrics displayMetrics = new DisplayMetrics();
     private RecyclerView entryRecyclerView;
     private ArrayList<String> uniqueTags = new ArrayList<String>();
@@ -123,7 +125,6 @@ public class ScrollingActivity extends AppCompatActivity {
         //initialize amount editText with 0.00
         textAmount.setText("0.00");
         //initialize date select in main activity
-        textViewDateSelect.setCompoundDrawablesWithIntrinsicBounds(R.drawable.date_icon, 0, 0, 0);
         date2 = System.currentTimeMillis();
 
         //initialize pause values

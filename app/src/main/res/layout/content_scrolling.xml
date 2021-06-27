@@ -7,9 +7,12 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling">
+    tools:showIn="@layout/activity_scrolling"
+    android:background="@drawable/recyclerview_bg_shape"
+    style="@style/recyclerBg">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="16dp"
         android:id="@+id/entryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
