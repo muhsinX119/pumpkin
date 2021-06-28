@@ -7,7 +7,7 @@
         <item name="colorPrimaryVariant">#f1f4f6</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondary">#1e88e5</item>
         <item name="colorSecondaryVariant">#1e88e5</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Card color -->
@@ -65,7 +65,7 @@
     </style>
 
     <style name="fabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="android:backgroundTint">#9575cd</item>
+        <item name="android:backgroundTint">#00838f</item>
         <item name="borderWidth">0dp</item>
     </style>
 

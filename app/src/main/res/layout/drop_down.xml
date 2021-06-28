@@ -7,6 +7,6 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:textSize="10dp"
-    android:textColor="?attr/colorOnPrimary"
+    android:textColor="?attr/textOnTopCard"
     android:textAppearance="?attr/textAppearanceSubtitle1"
     />
