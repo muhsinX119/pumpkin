@@ -11,9 +11,9 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:background="#00000000"
-        app:elevation="0dp">
+        android:layout_height="330dp"
+        android:background="@drawable/appbar_bg_shape_gradient"
+        app:elevation="8dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -25,9 +25,9 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewTop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="170dp"
                 android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="30dp"
                 style="@style/topCardStyle">
 
@@ -63,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textAlignment="center"
-                            android:textColor="?attr/colorOnPrimary"
+                            style="@style/textOnInputRow"
                             android:textCursorDrawable="@null" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -85,7 +85,7 @@
                             android:dropDownHeight="150dp"
                             android:inputType="textCapSentences"
                             android:padding="0dp"
-                            android:textColor="?attr/colorOnPrimary"
+                            style="@style/textOnInputRow"
                             android:textColorHint="@color/textfiled_hinttext_colorstate"
                             android:textCursorDrawable="@null"
                             android:textSize="13dp" />
@@ -116,7 +116,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:selectAllOnFocus="true"
-                            android:textColor="?attr/colorOnPrimary"
+                            style="@style/textOnInputRow"
                             android:textCursorDrawable="@null" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -150,7 +150,6 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:text="Wed, 6/16/21"
-                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="9dp" />
 
                     <Button
@@ -162,7 +161,6 @@
                         android:layout_centerVertical="true"
                         android:onClick="exportReport"
                         android:text="Create Report"
-                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="9dp" />
 
                 </RelativeLayout>

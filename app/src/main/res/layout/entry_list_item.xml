@@ -8,7 +8,7 @@
     style="@style/entryItemStyle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
+    android:layout_marginHorizontal="25dp"
     android:layout_marginVertical="4dp">
 
     <RelativeLayout
@@ -21,12 +21,12 @@
 
         <TextView
             android:id="@+id/textViewExpenseName"
-            android:maxWidth="170sp"
+            android:maxWidth="155sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textViewExpenseName"
             android:text="Expense Name"
-            android:textColor="?attr/colorOnPrimary"
+            style="@style/entryItemTextStyle"
             android:textStyle="normal"
             android:textSize="18sp"/>
 
@@ -38,7 +38,7 @@
             android:layout_centerVertical="false"
             android:layout_marginTop="5dp"
             android:text="Date"
-            android:textColor="?attr/colorOnPrimary"
+            style="@style/entryItemTextStyle"
             android:textSize="13sp" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:text="Tag"
-            android:textColor="?attr/colorOnPrimary"
+            style="@style/entryItemTextStyle"
             android:textSize="14sp"
             android:layout_marginRight="110sp"/>
 
@@ -60,7 +60,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="Amount"
-            android:textColor="?attr/colorOnPrimary"
+            style="@style/entryItemTextStyle"
             android:textSize="20sp"/>
     </RelativeLayout>
 

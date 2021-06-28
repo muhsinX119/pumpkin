@@ -5,7 +5,7 @@
     android:theme="@style/Theme.Pumpkin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/top_bg_shape_gradient"
+    android:background="@drawable/appbar_bg_shape_gradient"
     tools:context=".EditRecyclerEntry"
     android:paddingHorizontal="30dp"
     android:paddingVertical="60dp">

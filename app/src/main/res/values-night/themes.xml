@@ -112,7 +112,7 @@
     <!--new changes-->
 
     <style name="topSectionBg" parent="">
-        <item name="android:background">@drawable/top_bg_shape_gradient</item>
+        <item name="android:background">@drawable/appbar_bg_shape_gradient</item>
     </style>
 
     <style name="topCardStyle" parent="Widget.MaterialComponents.CardView">

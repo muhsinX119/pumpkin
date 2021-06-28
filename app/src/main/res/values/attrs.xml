@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <attr name="textOnTopCard" format="color"/>
+    <attr name="inputBoxColor" format="color"/>
+    <attr name="textonMiddle" format="color"/>
+    <attr name="textonRecycler" format="color"/>
+    
+</resources>
