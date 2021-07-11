@@ -49,17 +49,21 @@ import android.widget.TextView;
 import com.example.pumpkin.databinding.ActivityScrollingBinding;
 import com.example.pumpkin.databinding.ContentScrollingBinding;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -380,9 +384,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     public void exportReport (View v) throws IOException {
 
-        Log.d("Test", "exportReport: exportReport started");
-
-        if (Build.VERSION.SDK_INT > 29) {
+        /*if (Build.VERSION.SDK_INT > 29) {
 
             permissionStorage = Environment.isExternalStorageManager();
 
@@ -401,9 +403,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
         } else {
             permissionStorage = true;
-        }
+        }*/
 
-        if (permissionStorage) {
+        if (checkPermission()) {
 
             File downloadsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"");
             boolean downloadsFolderError = downloadsFolder.mkdirs();
@@ -447,5 +449,107 @@ public class ScrollingActivity extends AppCompatActivity {
                 .setAction("Action", null).show(); }
         }
 
+    public void importData (View v) {
+
+        if (!checkPermission()) {
+            return;
+        }
+
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/RestoreMe.csv");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedReader br = new BufferedReader(fr);
+        String expense;
+        String tag;
+        float amount;
+        Date d = new Date();
+        long date;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("E d/MMM/yy");
+        DbStructure entry = new DbStructure();
+
+        ArrayList<DbStructure> dataList = new ArrayList<DbStructure>();
+        DbStructure db = new DbStructure();
+        String dataString = "";
+
+        try {
+            dataString = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            dataString = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        while (dataString != null)
+        {
+            String[] tempData = dataString.split("(?!\\B\"[^\"]*), (?![^\"]*\"\\B)");
+            expense = tempData[1].substring(1,(tempData[1].length()-1));
+            tag = tempData[2].substring(1,(tempData[2].length()-1));
+            tempData[4] = tempData[4].substring(1,(tempData[4].length()-1));
+            Log.d("test", "tempdata4: "+ tempData[4]);
+            if (tempData[3]=="Amount") {
+                try {
+                    dataString = br.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                continue;
+            }
+            amount = Float.parseFloat(tempData[3]);
+            try {
+                d = dateFormat.parse(tempData[4]);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            date = d.getTime();
+            Log.d("test", "importData: "+ toString().valueOf(date) + d.toString() );
+            entry = new DbStructure(1, expense, tag, amount, date);
+            dataBaseHelper.addOne(entry);
+            try {
+                dataString = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        try {
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        recyclerViewDataUpdate();
+
+    }
+
+    public boolean checkPermission () {
+        if (Build.VERSION.SDK_INT > 29) {
+
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+                return false;
+            } else {
+                return true;
+            }
+
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
 
     }

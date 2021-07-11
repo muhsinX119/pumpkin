@@ -7,22 +7,110 @@
         <item name="colorPrimaryVariant">#f1f4f6</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondary">#1e88e5</item>
         <item name="colorSecondaryVariant">#1e88e5</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Card color -->
-        <item name="colorSurface">#0277bd</item>
+        <item name="colorSurface">@color/black</item>
         <item name="colorOnSurface">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:scrollbarThumbVertical">?attr/colorSecondary</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <!-- Customize your theme here. -->
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="materialCalendarTheme">@style/ThemeOverlay.App.DatePicker</item>
+
+        <item name="textOnTopCard">#ffffff</item>
+        <item name="inputBoxColor">#42a5f5</item>
+        <item name="textonMiddle">#ffffff</item>
+        <item name="textonRecycler">#ffffff</item>
 
     </style>
 
+
+    <!--new changes-->
+
+    <style name="topSectionBg" parent="">
+        <item name="android:background">#1b1b1b</item>
+    </style>
+
+    <style name="topCardStyle" parent="Widget.MaterialComponents.CardView">
+        <!--card color is irrelevant if we use cardimageview background-->
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="elevation">8dp</item>
+    </style>
+
+    <style name="topCardImageViewStyle" parent="">
+        <item name="android:background">@drawable/top_card_bg</item>
+    </style>
+
+    <style name="dateSelect" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="icon">@drawable/date_icon</item>
+        <item name="strokeColor">#00000000</item>
+        <item name="iconTint">?attr/inputBoxColor</item>
+        <item name="android:textColor">?attr/textOnTopCard</item>
+    </style>
+
+    <style name="reportButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="icon">@drawable/report_icon</item>
+        <item name="strokeColor">#00000000</item>
+        <item name="iconTint">?attr/inputBoxColor</item>
+        <item name="android:textColor">?attr/textOnTopCard</item>
+    </style>
+
+    <style name="textOnInputRow" parent="">
+        <item name="android:textColor">?attr/textOnTopCard</item>
+    </style>
+
+    <style name="fabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:backgroundTint">?attr/inputBoxColor</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+
+    <style name="textInMiddle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">?attr/textonMiddle</item>
+    </style>
+
+    <style name="expensePerDay" parent="Widget.AppCompat.TextView">
+        <item name="alpha">.8</item>
+        <item name="android:textColor">?attr/textonMiddle</item>
+    </style>
+
+    <style name="recyclerBg" parent="">
+        <item name="android:backgroundTint">#00ffffff</item>
+        <item name="android:alpha">1</item>
+    </style>
+
+    <style name="entryItemStyle" parent="Widget.MaterialComponents.CardView">
+        <!--use entry item background style to set background color of recycler entry-->
+        <!--<item name="cardBackgroundColor">#299cf1</item>-->
+        <item name="cardCornerRadius">25dp</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="entryItemBackgroundStyle" parent="">
+        <item name="android:background">@drawable/recycler_entry_bg_gradient</item>
+    </style>
+
+    <style name="entryItemTextStyle" parent="">
+        <item name="android:textColor">?attr/textonRecycler</item>
+    </style>
+
+
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">#0277bd</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorSurface">#b3e5fc</item>
+        <!-- Customize text field of the text input mode. -->
+    </style>
+
+
+
+    <!--not frequently changed-->
     <style name="Theme.Pumpkin.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -39,9 +127,9 @@
         <item name="boxCornerRadiusBottomEnd">0dp</item>
 
         <item name="android:textColorHint">@color/textfiled_hinttext_colorstate</item>
-        <item name="hintTextColor">?attr/colorOnPrimary</item>
+        <item name="hintTextColor">?attr/textOnTopCard</item>
         <item name="boxBackgroundColor">#00FFFFFF</item>
-        <item name="prefixTextColor">@color/black</item>
+        <item name="prefixTextColor">?attr/textOnTopCard</item>
         <!-- Theme attributes<item name="boxStrokeColor">?attr/colorOnPrimary</item> -->
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxStrokeWidthFocused">3dp</item>
@@ -58,7 +146,7 @@
         <item name="boxCornerRadiusTopEnd">0dp</item>
         <item name="boxCornerRadiusBottomEnd">0dp</item>
 
-        <item name="endIconTint">?attr/colorSecondary</item>
+        <item name="endIconTint">?attr/inputBoxColor</item>
 
         <!-- Style attributes <item name="hintTextAppearance">@style/HintText</item>
         <item name="errorTextAppearance">@style/ErrorText</item>
@@ -67,7 +155,7 @@
 
         <!-- Theme attributes -->
         <item name="android:textColorHint">@color/textfiled_hinttext_colorstate</item>
-        <item name="hintTextColor">?attr/colorOnPrimary</item>
+        <item name="hintTextColor">?attr/textOnTopCard</item>
         <item name="boxBackgroundColor">#00FFFFFF</item>
         <!-- Theme attributes<item name="boxStrokeColor">?attr/colorOnPrimary</item> -->
         <item name="boxStrokeWidth">2dp</item>
@@ -99,82 +187,9 @@
     </style>
 
     <style name="updateButton" parent="@style/Widget.MaterialComponents.Button">
-        <item name="textAppearanceButton">@style/updateButtonText</item>
-        <item name="background">@drawable/top_card_bg</item>
+        <item name="android:textColor">?attr/textOnTopCard</item>
+        <item name="android:backgroundTint">#242424</item>
 
-    </style>
-
-    <style name="updateButtonText" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-
-    <!--new changes-->
-
-    <style name="topSectionBg" parent="">
-        <item name="android:background">@drawable/appbar_bg_shape_gradient</item>
-    </style>
-
-    <style name="topCardStyle" parent="Widget.MaterialComponents.CardView">
-        <!--card color is irrelevant if we use cardimageview background-->
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">20dp</item>
-        <item name="elevation">8dp</item>
-    </style>
-
-    <style name="topCardImageViewStyle" parent="">
-        <item name="android:background">@drawable/top_card_bg</item>
-    </style>
-
-    <style name="dateSelect" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
-        <item name="icon">@drawable/date_icon</item>
-        <item name="strokeColor">#00000000</item>
-        <item name="iconTint">?attr/colorSecondary</item>
-    </style>
-
-    <style name="reportButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
-        <item name="icon">@drawable/report_icon</item>
-        <item name="strokeColor">#00000000</item>
-        <item name="iconTint">?attr/colorSecondary</item>
-    </style>
-
-    <style name="fabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="android:backgroundTint">#eeeeee</item>
-        <item name="borderWidth">0dp</item>
-    </style>
-
-    <style name="textInMiddle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="expensePerDay" parent="Widget.AppCompat.TextView">
-        <item name="alpha">.8</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-    </style>
-
-    <style name="recyclerBg" parent="">
-        <item name="android:backgroundTint">#00FFFFFF</item>
-        <item name="android:alpha">1</item>
-    </style>
-
-    <style name="entryItemStyle" parent="Widget.MaterialComponents.CardView">
-        <!--<item name="cardBackgroundColor">#299cf1</item>-->
-        <item name="cardCornerRadius">16dp</item>
-        <item name="rippleColor">@color/white</item>
-        <item name="elevation">2dp</item>
-    </style>
-
-    <style name="entryItemBackgroundStyle" parent="">
-        <item name="android:background">@drawable/top_card_bg</item>
-    </style>
-
-
-    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
-        <item name="colorPrimary">#0277bd</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorOnSurface">@color/black</item>
-        <item name="colorSurface">#b3e5fc</item>
-        <!-- Customize text field of the text input mode. -->
     </style>
 
 </resources>

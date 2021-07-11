@@ -5,7 +5,7 @@
     android:theme="@style/Theme.Pumpkin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbar_bg_shape_gradient"
+    android:background="#1b1b1b"
     tools:context=".EditRecyclerEntry"
     android:paddingHorizontal="30dp"
     android:paddingVertical="60dp">
@@ -30,7 +30,7 @@
                 android:id="@+id/editRecyclerEditTextExpense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?attr/textOnTopCard"
                 android:inputType="textCapSentences" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,7 +60,7 @@
                 android:dropDownHeight="wrap_content"
                 android:inputType="textCapSentences"
                 android:padding="16dp"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/textOnTopCard"
                 android:textColorHint="@color/textfiled_hinttext_colorstate"
                 android:textCursorDrawable="@null"
                 android:textSize="13dp" />
@@ -82,7 +82,7 @@
                 android:id="@+id/editRecyclerEditTextAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?attr/textOnTopCard"
                 android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +99,7 @@
                 android:id="@+id/editRecyclerEditTextDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?attr/textOnTopCard"
                 android:focusable="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>

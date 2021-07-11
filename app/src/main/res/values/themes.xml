@@ -18,13 +18,13 @@
         <item name="android:scrollbarThumbVertical">?attr/colorSecondary</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <!-- Customize your theme here. -->
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="materialCalendarTheme">@style/ThemeOverlay.App.DatePicker</item>
 
         <item name="textOnTopCard">#ffffff</item>
-        <item name="inputBoxColor">#ffffff</item>
-        <item name="textonMiddle">#000000</item>
-        <item name="textonRecycler">#000000</item>
+        <item name="inputBoxColor">#42a5f5</item>
+        <item name="textonMiddle">#ffffff</item>
+        <item name="textonRecycler">#ffffff</item>
 
     </style>
 
@@ -32,7 +32,7 @@
     <!--new changes-->
 
     <style name="topSectionBg" parent="">
-        <item name="android:background">@drawable/top_card_bg</item>
+        <item name="android:background">#1b1b1b</item>
     </style>
 
     <style name="topCardStyle" parent="Widget.MaterialComponents.CardView">
@@ -49,14 +49,14 @@
     <style name="dateSelect" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="icon">@drawable/date_icon</item>
         <item name="strokeColor">#00000000</item>
-        <item name="iconTint">?attr/textOnTopCard</item>
+        <item name="iconTint">?attr/inputBoxColor</item>
         <item name="android:textColor">?attr/textOnTopCard</item>
     </style>
 
     <style name="reportButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="icon">@drawable/report_icon</item>
         <item name="strokeColor">#00000000</item>
-        <item name="iconTint">?attr/textOnTopCard</item>
+        <item name="iconTint">?attr/inputBoxColor</item>
         <item name="android:textColor">?attr/textOnTopCard</item>
     </style>
 
@@ -65,7 +65,7 @@
     </style>
 
     <style name="fabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="android:backgroundTint">#00838f</item>
+        <item name="android:backgroundTint">?attr/inputBoxColor</item>
         <item name="borderWidth">0dp</item>
     </style>
 
@@ -187,13 +187,9 @@
     </style>
 
     <style name="updateButton" parent="@style/Widget.MaterialComponents.Button">
-        <item name="textAppearanceButton">@style/updateButtonText</item>
-        <item name="background">@drawable/top_card_bg</item>
+        <item name="android:textColor">?attr/textOnTopCard</item>
+        <item name="android:backgroundTint">#242424</item>
 
-    </style>
-
-    <style name="updateButtonText" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>
